@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Beskjeden som forsvant</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--paper:#fafaf7;--warm:#eae5dc;--accent:#c45d3e;--accent-hover:#a84830;--sage:#5a7a6a;--muted:#78716c;--border:#d6d0c4}
+body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;padding:36px 20px 80px;min-height:100vh}
+.hdr{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--warm)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);background:#e6ede9;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--muted)}
+.nc{animation:ni .5s ease}
+@keyframes ni{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nl{font-size:13px;color:var(--muted);font-style:italic}
+.nb{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:#f0e6ff;color:#6b3fa0}
+.nt{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.ntx{font-size:15.5px;line-height:1.75;margin-bottom:28px;white-space:pre-wrap}
+.cl{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cb{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s ease;line-height:1.4}
+.cb:hover{border-color:var(--accent);background:#fef6f4;transform:translateX(4px)}
+.eb{padding:16px 20px;border-radius:10px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ei{font-size:22px}.el{font-size:14px;font-weight:600}
+.rt{width:100%;padding:14px 20px;border:2px solid var(--sage);border-radius:10px;background:#fff;color:var(--sage);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s ease;margin-bottom:16px}
+.rt:hover{background:#e6ede9}
+.rb{background:#fff;border:1px solid var(--warm);border-radius:12px;padding:24px;margin-bottom:24px;animation:ni .4s ease}
+.rh{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:16px}
+.rs{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;margin-top:20px}
+.rp{list-style:none;margin-bottom:8px}
+.rp li{padding:6px 0 6px 20px;position:relative;font-size:14.5px;line-height:1.6;color:#44403c}
+.rp li::before{content:"\2013";position:absolute;left:0;color:var(--sage);font-weight:700}
+.rq{list-style:none;counter-reset:rq}
+.rq li{counter-increment:rq;padding:10px 0 10px 32px;position:relative;font-size:14.5px;line-height:1.6;border-bottom:1px solid #f5f0ea}
+.rq li:last-child{border-bottom:none}
+.rq li::before{content:counter(rq);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:#f0e6ff;color:#6b3fa0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.bb,.bm{padding:12px 20px;border:2px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.bb:hover,.bm:hover{border-color:var(--ink)}
+.br{flex:1;padding:12px 20px;border:2px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.br:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.ps{margin-top:32px;padding-top:24px;border-top:1px solid var(--warm)}
+.ps h3{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.pc{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:16px;font-size:13px;font-weight:600;margin-right:8px;margin-bottom:8px}
+.pb{display:flex;gap:4px;margin-bottom:32px}
+.pg{flex:1;height:3px;border-radius:2px;transition:background .4s ease}
+@media(max-width:540px){.app{padding:24px 16px 60px}.hdr h1{font-size:24px}.nt{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const EC={good:{label:"Godt utfall",color:"#5a7a6a",bg:"#e6ede9",icon:"\u2726"},moderate:{label:"Middels utfall",color:"#c4973e",bg:"#faf3e6",icon:"\u25c8"},poor:{label:"D\u00e5rlig utfall",color:"#c45d3e",bg:"#fef2f0",icon:"\u2727"}};
+const META={"badge": "HSM254N · Humanitær org.", "title": "Beskjeden som forsvant", "theme": "Kommunikasjonssvikt"};
+const SC={"start": {"title": "Beskjeden som forsvant", "location": "Teams-møte, onsdag kl. 09:00", "text": "Du er regionkoordinator i Hjelp Nå. Lokallaget i Bredvik (25 frivillige) har gjort formidabel innsats med flyktningmottak.\n\nTone (48), lokalleder, sender sint e-post: «Hovedkontoret har bestemt at vi skal slutte med matutdeling og fokusere på språkkurs. Ingen spurte oss!»\n\nProgramsjefen Nina (39) forklarer: «Vi sendte ut info for tre måneder siden. Det er et styrevedtak.»\n\nDu finner e-posten – den gikk til en postboks Bredvik aldri sjekker. Informasjonen nådde aldri frem.", "choices": [{"text": "Ring Tone først og lytt", "next": "h1"}, {"text": "Kall begge til fellesmøte på Teams", "next": "h4"}, {"text": "Forklar Tone at vedtaket må følges", "next": "h7"}, {"text": "Si til Nina at kommunikasjonen sviktet", "next": "h8"}]}, "h1": {"title": "Tones frustrasjon", "location": "Telefon, kl. 10:00", "badge": "Aktiv lytting", "text": "Tone snakker i tjue minutter. Det handler om mer enn matutdeling – lokallaget føler seg aldri hørt. «Vi ser familiene i øynene. Oslo gjør ikke det.»\n\nDu anerkjenner uten å love noe: «Hvis du fikk påvirke – hva ville du foreslått?»", "choices": [{"text": "Arrangér dialogmøte mellom Tone og Nina", "next": "h2"}, {"text": "Løft Tones innspill oppover og kjør saken for henne", "next": "h3"}]}, "h2": {"title": "Dialogmøtet", "location": "Teams, fredag kl. 13:00", "badge": "LØFT-metodikk", "text": "Du fasiliterer: «Målet er å finne ut hvordan strategien kan gi mening lokalt.»\n\nNina forklarer: givere krever dokumenterbar effekt. Tone: familiene trenger både mat og språk, og matutdelingen bygger tillit.\n\nDu spør: «Se for dere at Bredvik om ett år både oppfyller strategien og er stolte. Hva skjedde?»\n\nLøsningen: språkkurs knyttet til matutdelingen – deltakerne lærer norsk mens de lager mat sammen. Tone lyser opp. Nina: «Det er en god modell vi kan vise giverne.»", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Bro mellom lokalt og sentralt", "points": ["Kommunikasjonssvikten var systemisk, ikke personlig.", "Tone trengte å bli hørt før hun kunne lytte.", "LØFT skapte en kreativ løsning ingen hadde alene.", "Løsningen respekterte både strategi og lokal kunnskap."], "questions": ["Hvordan sikre at informasjon når frem?", "Hvilke maktrelasjoner ligger i hovedkontor–lokallag?", "Din rolle når du står mellom to nivåer?"]}}, "h3": {"title": "Du kjører saken", "location": "Ukene etter", "text": "Nina er forståelsesfull men tydelig: «Vi kan ikke gjøre unntak.» Tone føler du lovet mer enn du leverte. Tre frivillige slutter. Lokallaget går på sparebluss.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Advokaten som flaskehals", "points": ["Du tok bort Tones mulighet til direkte påvirkning.", "Nina hørte aldri Tones perspektiv direkte.", "Du ble utilsiktet portvokter."], "questions": ["Forskjellen på å støtte og å ta over kampen?", "Hvordan påvirker mellomledd maktbalansen?", "Hva hadde du gjort annerledes?"]}}, "h4": {"title": "Fellesmøte uten forarbeid", "location": "Teams, kl. 11:00", "text": "Tone går rett i forsvar: «Typisk sentralstyring!» Nina blir formell: «Strategien er vedtatt.» Møtet ender uten enighet.", "choices": [{"text": "Ring Tone for å høre hva hun trenger", "next": "h5"}, {"text": "Send formell e-post med frister", "next": "h6"}]}, "h5": {"title": "Reparasjonssamtalen", "location": "Telefon, neste dag", "badge": "Kommunikasjon", "text": "Du beklager dårlig forberedelse. Tone: «Jeg vet strategien må endres. Men måten er problemet.» Dere enes om overgangsperiode og lokal innflytelse på utformingen.", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Rekkefølge betyr alt", "points": ["Fellesmøte uten forarbeid eskalerte.", "Lytte først, løse etter er avgjørende.", "Overgangsperioden anerkjente lokallagets behov."], "questions": ["Hva om du snakket med Tone før møtet?", "Prosess vs. innhold i konflikthåndtering?", "Hva lærte du om tidspress?"]}}, "h6": {"title": "Den formelle e-posten", "location": "Ukene etter", "text": "Tone videresender til alle frivillige: «Se selv. De bryr seg ikke.» Seks slutter. Ingen aktivitet i tre måneder.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Formalitet dreper engasjement", "points": ["Instrukser uten dialog ble tolket som disrespekt.", "E-posten ble et våpen.", "Både folk og aktivitet gikk tapt."], "questions": ["Når er formell kommunikasjon riktig vs. skadelig?", "Maktforholdet sentralt–lokalt?", "Hvordan kommunisere samme budskap bedre?"]}}, "h7": {"title": "Du formidler vedtaket", "location": "Telefon, kl. 10:00", "text": "Tone: «Er vi bare fotsoldater?» Hun legger på. Følgende uke trekker hun seg som leder. Viselederne følger.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Overbringe uten å lytte", "points": ["Du ble talerrør i stedet for bro.", "Tones frustrasjon handlet om prosess.", "Uten lokale ledere kollapser frivilligheten."], "questions": ["Din rolle mellom vedtak og mennesker?", "Hvordan formidle budskap og bevare relasjon?", "Kommunikasjonens rolle i konflikthåndtering?"]}}, "h8": {"title": "Du konfronterer Nina", "location": "Teams, kl. 11:00", "text": "Nina går i forsvar: «Vi fulgte rutinene.» Du holder fast: «Rutinene fungerte ikke.» Nina: «Ok. Hva foreslår du?»", "choices": [{"text": "Foreslå dialogmøte mellom Nina og Bredvik", "next": "h2"}, {"text": "Be Nina sende beklagelse og ny tidslinje", "next": "h9"}]}, "h9": {"title": "Beklagelsen", "location": "E-post, torsdag", "badge": "Kommunikasjon", "text": "Nina sender personlig beklagelse og gir tre måneders overgang. Tone: «Takk. Det betydde mye.» Lokallaget omstiller seg gradvis.", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Beklagelse som verktøy", "points": ["Erkjennelse av feil gjenopprettet tillit.", "Overgangsperioden viste respekt.", "Noe frustrasjon gjenstår – dypere dialog trengs."], "questions": ["Verdien av oppriktig beklagelse?", "Beklagelse vs. ansvarsfraskriving?", "Hvordan forbedre kommunikasjonsrutinene?"]}}};
+function App(){
+var _n=useState("start"),cn=_n[0],setCn=_n[1];
+var _h=useState(["start"]),hi=_h[0],setHi=_h[1];
+var _r=useState(false),sr=_r[0],setSr=_r[1];
+var _p=useState([]),ap=_p[0],setAp=_p[1];
+var ref=useRef(null);
+var nd=SC[cn];var ed=nd&&nd.isEnding?EC[nd.endingType]:null;
+useEffect(function(){if(ref.current)ref.current.scrollIntoView({behavior:"smooth",block:"start"});},[cn]);
+function choose(x){setCn(x);setHi(function(h){return h.concat([x]);});setSr(false);}
+function goBack(){if(hi.length<=1)return;var nh=hi.slice(0,-1);setHi(nh);setCn(nh[nh.length-1]);setSr(false);}
+function restart(){setAp(function(p){return p.concat([{ending:nd.endingType}]);});setCn("start");setHi(["start"]);setSr(false);}
+return(
+<div className="app" ref={ref}>
+<header className="hdr">
+<div className="badge">{META.badge}</div>
+<h1>{META.title}</h1>
+<p>Tema: {META.theme}</p>
+</header>
+<div className="pb">{Array.from({length:5}).map(function(_,i){return <div key={i} className="pg" style={{background:i<hi.length?"#c45d3e":"#d6d0c4"}}/>;})}</div>
+<div className="nc" key={cn}>
+<div className="nm"><span className="nl">{nd.location}</span>{nd.badge&&<span className="nb">{nd.badge}</span>}</div>
+{cn!=="start"&&<h2 className="nt">{nd.title}</h2>}
+<div className="ntx">{nd.text}</div>
+{nd.isEnding&&ed&&(<div>
+<div className="eb" style={{background:ed.bg,border:"1px solid "+ed.color+"30"}}><span className="ei">{ed.icon}</span><span className="el" style={{color:ed.color}}>{ed.label}</span></div>
+<button className="rt" onClick={function(){setSr(!sr);}}>{sr?"Skjul refleksjon":"Vis refleksjon og l\u00e6ringspoeng"}</button>
+{sr&&nd.reflection&&(<div className="rb">
+<h3 className="rh">{nd.reflection.title}</h3>
+<div className="rs">Hva skjedde?</div>
+<ul className="rp">{nd.reflection.points.map(function(p,i){return <li key={i}>{p}</li>;})}</ul>
+<div className="rs">Sp\u00f8rsm\u00e5l til refleksjon</div>
+<ol className="rq">{nd.reflection.questions.map(function(q,i){return <li key={i}>{q}</li>;})}</ol>
+</div>)}
+<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre</button><button className="br" onClick={restart}>Pr\u00f8v en annen vei</button></div>
+{ap.length>0&&(<div className="ps"><h3>Tidligere fors\u00f8k</h3>{ap.map(function(p,i){var c=EC[p.ending];return <span key={i} className="pc" style={{background:c.bg,color:c.color}}>{c.icon} #{i+1}: {c.label}</span>;})}</div>)}
+</div>)}
+{!nd.isEnding&&nd.choices&&(<div>
+<div className="cl">Hva gj\u00f8r du?</div>
+{nd.choices.map(function(ch,i){return <button key={i} className="cb" onClick={function(){choose(ch.next);}}>{ch.text}</button>;})}
+{hi.length>1&&<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre siste valg</button></div>}
+</div>)}
+</div></div>);
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>

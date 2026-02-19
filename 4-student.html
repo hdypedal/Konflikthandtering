@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Prinsippsaken</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--paper:#fafaf7;--warm:#eae5dc;--accent:#c45d3e;--accent-hover:#a84830;--sage:#5a7a6a;--muted:#78716c;--border:#d6d0c4}
+body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;padding:36px 20px 80px;min-height:100vh}
+.hdr{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--warm)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);background:#e6ede9;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--muted)}
+.nc{animation:ni .5s ease}
+@keyframes ni{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nl{font-size:13px;color:var(--muted);font-style:italic}
+.nb{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:#f0e6ff;color:#6b3fa0}
+.nt{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.ntx{font-size:15.5px;line-height:1.75;margin-bottom:28px;white-space:pre-wrap}
+.cl{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cb{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s ease;line-height:1.4}
+.cb:hover{border-color:var(--accent);background:#fef6f4;transform:translateX(4px)}
+.eb{padding:16px 20px;border-radius:10px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ei{font-size:22px}.el{font-size:14px;font-weight:600}
+.rt{width:100%;padding:14px 20px;border:2px solid var(--sage);border-radius:10px;background:#fff;color:var(--sage);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s ease;margin-bottom:16px}
+.rt:hover{background:#e6ede9}
+.rb{background:#fff;border:1px solid var(--warm);border-radius:12px;padding:24px;margin-bottom:24px;animation:ni .4s ease}
+.rh{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:16px}
+.rs{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;margin-top:20px}
+.rp{list-style:none;margin-bottom:8px}
+.rp li{padding:6px 0 6px 20px;position:relative;font-size:14.5px;line-height:1.6;color:#44403c}
+.rp li::before{content:"\2013";position:absolute;left:0;color:var(--sage);font-weight:700}
+.rq{list-style:none;counter-reset:rq}
+.rq li{counter-increment:rq;padding:10px 0 10px 32px;position:relative;font-size:14.5px;line-height:1.6;border-bottom:1px solid #f5f0ea}
+.rq li:last-child{border-bottom:none}
+.rq li::before{content:counter(rq);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:#f0e6ff;color:#6b3fa0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.bb,.bm{padding:12px 20px;border:2px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.bb:hover,.bm:hover{border-color:var(--ink)}
+.br{flex:1;padding:12px 20px;border:2px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.br:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.ps{margin-top:32px;padding-top:24px;border-top:1px solid var(--warm)}
+.ps h3{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.pc{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:16px;font-size:13px;font-weight:600;margin-right:8px;margin-bottom:8px}
+.pb{display:flex;gap:4px;margin-bottom:32px}
+.pg{flex:1;height:3px;border-radius:2px;transition:background .4s ease}
+@media(max-width:540px){.app{padding:24px 16px 60px}.hdr h1{font-size:24px}.nt{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const EC={good:{label:"Godt utfall",color:"#5a7a6a",bg:"#e6ede9",icon:"\u2726"},moderate:{label:"Middels utfall",color:"#c4973e",bg:"#faf3e6",icon:"\u25c8"},poor:{label:"D\u00e5rlig utfall",color:"#c45d3e",bg:"#fef2f0",icon:"\u2727"}};
+const META={"badge": "HSM254N · Studentorganisasjon", "title": "Prinsippsaken", "theme": "Verdikonflikter"};
+const SC={"start": {"title": "Prinsippsaken", "location": "Studenthuset, torsdag kl. 18:00", "text": "Du er nestleder i Studentunionen. Styret skal stemme over om dere signerer et opprop om klimarettferdighet.\n\nMaria (25) er for: «Dette handler om fremtiden vår.»\nJonas (27) er mot: «Vi representerer alle studenter. Mange er uenige. Vi må være nøytrale.»\nMaria: «Nøytralitet er også et standpunkt.»\n\nStyret er 3–3. Din stemme avgjør.", "choices": [{"text": "Foreslå utsettelse og involver studentmassen", "next": "s1"}, {"text": "Stem for oppropet", "next": "s2"}, {"text": "Stem mot", "next": "s5"}, {"text": "Foreslå kompromiss: støtt saken uten å signere", "next": "s8"}]}, "s1": {"title": "Utsettelse og involvering", "location": "Studenthuset, kl. 18:20", "badge": "Kommunikasjon", "text": "Allmøte om to uker samler 120 studenter. Engasjert debatt. 68–52 for å signere, med tillegg om debatt.\n\nMaria fornøyd. Jonas aksepterer: «Når studentene har talt, er det greit.»", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Demokratisk forankring", "points": ["Utsettelsen kostet tid, men ga legitimitet.", "Prosessen var like viktig som resultatet.", "Begges verdier ble ivaretatt."], "questions": ["Når bruke tid på prosess vs. handle raskt?", "Verdikonflikt vs. uenighetsfellesskap?", "Hvordan ta stilling uten å splitte?"]}}, "s2": {"title": "Du stemmer for", "location": "Studenthuset, kl. 18:15", "text": "4–3. Jonas: «Da er vi ikke for alle studenter lenger.» Han trekker seg. To foreninger protesterer.", "choices": [{"text": "Inviter Jonas til samtale", "next": "s3"}, {"text": "Kommuniser vedtaket og gå videre", "next": "s4"}]}, "s3": {"title": "Samtalen med Jonas", "location": "Kantina, fredag", "badge": "Verdier og roller", "text": "Jonas: «Det handler om at vi tok prinsippvedtak uten å spørre studentene.» Du foreslår at han leder en åpen debatt. 80 studenter møter opp. Jonas blir i styret.", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Verdier og prosess", "points": ["Vedtaket skapte spenninger i prosessen.", "Jonas’ frustrasjon handlet om prosess, ikke innhold.", "Debatten reparerte noe demokratisk tillit."], "questions": ["Kan riktig vedtak fattes på feil måte?", "Verdier vs. roller i organisasjoner?", "Egen verdiforankring og lederstil?"]}}, "s4": {"title": "Full fart videre", "location": "Ukene etter", "text": "Tre foreninger fryser samarbeidet. Jonas går til media. Tilliten synker. Ved neste valg stiller ingen kandidater.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Prinsipp vs. prosess", "points": ["Verdimessig begrunnet, men manglet legitimitet.", "Jonas ble ikke hørt etter vedtaket heller.", "Mer tapt på prosessen enn vunnet på standpunktet."], "questions": ["Kan organisasjonen ha rett og likevel tape?", "Legitimitet og engasjement?", "Hva annerledes?"]}}, "s5": {"title": "Du stemmer mot", "location": "Studenthuset, kl. 18:15", "text": "3–4. Maria: «Jeg skammer meg over denne organisasjonen.» Hun poster på sosiale medier. Kommentarfeltet eksploderer.", "choices": [{"text": "Ring Maria og forklar resonnementet", "next": "s6"}, {"text": "Publiser uttalelse om nøytralitet", "next": "s7"}]}, "s6": {"title": "Samtalen med Maria", "location": "Telefon, fredag", "text": "Du forklarer at studentene burde avgjøre. Maria: «Men du stemte mot!» Du foreslår allmøte. Det vedtar å signere med stort flertall.", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Feil vei til riktig mål", "points": ["Godt prinsipp, men handlingen ble tolket som motstand.", "Maria reagerte på handling, ikke intensjon.", "Allmøtet løste saken, men tilliten tok tid."], "questions": ["Kommunisere intensjoner ved upopulære standpunkt?", "Intensjon vs. tolkning?", "Sosiale mediers rolle i konflikter?"]}}, "s7": {"title": "Uttalelsen", "location": "Sosiale medier", "text": "Tolkes som feighet av alle. Maria starter underskriftskampanje for nyvalg. Styret bruker semesteret på å rydde opp.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Kommunikasjon forverrer", "points": ["Generell uttalelse uten dialog tolkes i verste mening.", "Intern uenighet ble offentlig krise.", "Reaktivt i stedet for proaktivt."], "questions": ["Risikoen ved uttalelser vs. dialog?", "Sosiale medier-håndtering?", "Lærdommer om verdikonflikter?"]}}, "s8": {"title": "Kompromisset", "location": "Studenthuset, kl. 18:20", "badge": "Uenighetsfellesskap", "text": "Studentunionen arrangerer klimauke uten å signere oppropet. Maria misfornøyd. Jonas fornøyd.\n\nKlimauken trekker overraskende mye oppmerksomhet og bredere engasjement enn forventet. Maria innrømmer motvillig at det fungerte.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Kreativt kompromiss", "points": ["Både engasjement og inkludering ivaretatt.", "Resultatet ble kanskje bedre enn oppropet alene.", "Kreative løsninger oppstår forbi «for eller mot»."], "questions": ["Er kompromiss alltid godt i verdikonflikter?", "Når ta stilling, når finne mellomvei?", "Din tendens: ta side eller søke kompromiss?"]}}};
+function App(){
+var _n=useState("start"),cn=_n[0],setCn=_n[1];
+var _h=useState(["start"]),hi=_h[0],setHi=_h[1];
+var _r=useState(false),sr=_r[0],setSr=_r[1];
+var _p=useState([]),ap=_p[0],setAp=_p[1];
+var ref=useRef(null);
+var nd=SC[cn];var ed=nd&&nd.isEnding?EC[nd.endingType]:null;
+useEffect(function(){if(ref.current)ref.current.scrollIntoView({behavior:"smooth",block:"start"});},[cn]);
+function choose(x){setCn(x);setHi(function(h){return h.concat([x]);});setSr(false);}
+function goBack(){if(hi.length<=1)return;var nh=hi.slice(0,-1);setHi(nh);setCn(nh[nh.length-1]);setSr(false);}
+function restart(){setAp(function(p){return p.concat([{ending:nd.endingType}]);});setCn("start");setHi(["start"]);setSr(false);}
+return(
+<div className="app" ref={ref}>
+<header className="hdr">
+<div className="badge">{META.badge}</div>
+<h1>{META.title}</h1>
+<p>Tema: {META.theme}</p>
+</header>
+<div className="pb">{Array.from({length:5}).map(function(_,i){return <div key={i} className="pg" style={{background:i<hi.length?"#c45d3e":"#d6d0c4"}}/>;})}</div>
+<div className="nc" key={cn}>
+<div className="nm"><span className="nl">{nd.location}</span>{nd.badge&&<span className="nb">{nd.badge}</span>}</div>
+{cn!=="start"&&<h2 className="nt">{nd.title}</h2>}
+<div className="ntx">{nd.text}</div>
+{nd.isEnding&&ed&&(<div>
+<div className="eb" style={{background:ed.bg,border:"1px solid "+ed.color+"30"}}><span className="ei">{ed.icon}</span><span className="el" style={{color:ed.color}}>{ed.label}</span></div>
+<button className="rt" onClick={function(){setSr(!sr);}}>{sr?"Skjul refleksjon":"Vis refleksjon og l\u00e6ringspoeng"}</button>
+{sr&&nd.reflection&&(<div className="rb">
+<h3 className="rh">{nd.reflection.title}</h3>
+<div className="rs">Hva skjedde?</div>
+<ul className="rp">{nd.reflection.points.map(function(p,i){return <li key={i}>{p}</li>;})}</ul>
+<div className="rs">Sp\u00f8rsm\u00e5l til refleksjon</div>
+<ol className="rq">{nd.reflection.questions.map(function(q,i){return <li key={i}>{q}</li>;})}</ol>
+</div>)}
+<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre</button><button className="br" onClick={restart}>Pr\u00f8v en annen vei</button></div>
+{ap.length>0&&(<div className="ps"><h3>Tidligere fors\u00f8k</h3>{ap.map(function(p,i){var c=EC[p.ending];return <span key={i} className="pc" style={{background:c.bg,color:c.color}}>{c.icon} #{i+1}: {c.label}</span>;})}</div>)}
+</div>)}
+{!nd.isEnding&&nd.choices&&(<div>
+<div className="cl">Hva gj\u00f8r du?</div>
+{nd.choices.map(function(ch,i){return <button key={i} className="cb" onClick={function(){choose(ch.next);}}>{ch.text}</button>;})}
+{hi.length>1&&<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre siste valg</button></div>}
+</div>)}
+</div></div>);
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>

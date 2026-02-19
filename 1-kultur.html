@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Frivilligkvelden som sporet av</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--paper:#fafaf7;--warm:#eae5dc;--accent:#c45d3e;--accent-hover:#a84830;--sage:#5a7a6a;--muted:#78716c;--border:#d6d0c4}
+body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;padding:36px 20px 80px;min-height:100vh}
+.hdr{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--warm)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);background:#e6ede9;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--muted)}
+.nc{animation:ni .5s ease}
+@keyframes ni{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nl{font-size:13px;color:var(--muted);font-style:italic}
+.nb{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:#f0e6ff;color:#6b3fa0}
+.nt{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.ntx{font-size:15.5px;line-height:1.75;margin-bottom:28px;white-space:pre-wrap}
+.cl{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cb{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s ease;line-height:1.4}
+.cb:hover{border-color:var(--accent);background:#fef6f4;transform:translateX(4px)}
+.eb{padding:16px 20px;border-radius:10px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ei{font-size:22px}.el{font-size:14px;font-weight:600}
+.rt{width:100%;padding:14px 20px;border:2px solid var(--sage);border-radius:10px;background:#fff;color:var(--sage);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s ease;margin-bottom:16px}
+.rt:hover{background:#e6ede9}
+.rb{background:#fff;border:1px solid var(--warm);border-radius:12px;padding:24px;margin-bottom:24px;animation:ni .4s ease}
+.rh{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:16px}
+.rs{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;margin-top:20px}
+.rp{list-style:none;margin-bottom:8px}
+.rp li{padding:6px 0 6px 20px;position:relative;font-size:14.5px;line-height:1.6;color:#44403c}
+.rp li::before{content:"\2013";position:absolute;left:0;color:var(--sage);font-weight:700}
+.rq{list-style:none;counter-reset:rq}
+.rq li{counter-increment:rq;padding:10px 0 10px 32px;position:relative;font-size:14.5px;line-height:1.6;border-bottom:1px solid #f5f0ea}
+.rq li:last-child{border-bottom:none}
+.rq li::before{content:counter(rq);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:#f0e6ff;color:#6b3fa0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.bb,.bm{padding:12px 20px;border:2px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.bb:hover,.bm:hover{border-color:var(--ink)}
+.br{flex:1;padding:12px 20px;border:2px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.br:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.ps{margin-top:32px;padding-top:24px;border-top:1px solid var(--warm)}
+.ps h3{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.pc{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:16px;font-size:13px;font-weight:600;margin-right:8px;margin-bottom:8px}
+.pb{display:flex;gap:4px;margin-bottom:32px}
+.pg{flex:1;height:3px;border-radius:2px;transition:background .4s ease}
+@media(max-width:540px){.app{padding:24px 16px 60px}.hdr h1{font-size:24px}.nt{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const EC={good:{label:"Godt utfall",color:"#5a7a6a",bg:"#e6ede9",icon:"\u2726"},moderate:{label:"Middels utfall",color:"#c4973e",bg:"#faf3e6",icon:"\u25c8"},poor:{label:"D\u00e5rlig utfall",color:"#c45d3e",bg:"#fef2f0",icon:"\u2727"}};
+const META={"badge": "HSM254N · Kulturforening", "title": "Frivilligkvelden som sporet av", "theme": "Ubevisste maktrelasjoner"};
+const SC={"start": {"title": "Frivilligkvelden som sporet av", "location": "Kulturhuset, mandag kl. 18:30", "text": "Du er ny leder for arrangementskomiteen i «Sammen for Bydelen». Du har vært frivillig i to år og ble nylig valgt til komitéleder.\n\nI kveld er det planleggingsmøte for Bydelsfestivalen. Stemningen er god helt til Mona (58, med i 12 år) tar ordet: «Jeg synes vi gjør det slik vi alltid har gjort.»\n\nAmir (24, med i ett år) svarer: «Men vi mister folk hvert år! Jeg har laget en skisse til et helt nytt konsept.»\n\nMona himler med øynene: «Du har vært her i fem minutter og skal forandre alt?»\n\nAlle ser på deg.", "choices": [{"text": "Anerkjenn begge og foreslå å utforske ideene", "next": "k1"}, {"text": "Be Mona la Amir snakke ferdig", "next": "k5"}, {"text": "Foreslå å stemme", "next": "k8"}, {"text": "Si at dere holder seg til tradisjonen", "next": "k11"}]}, "k1": {"title": "Du velger dialog", "location": "Kulturhuset, kl. 18:45", "text": "Du anerkjenner begge. De får presentere ideene sine. Men Mona kontrer med et personangrep: «Du sa det om fotoutstillingen også. Den ble aldri noe av.» Amir ser såret ut.", "choices": [{"text": "Ta pause og snakk med dem hver for seg", "next": "k2"}, {"text": "Spør gruppa: «Hva er viktigst for oss med festivalen?»", "next": "k4"}]}, "k2": {"title": "Pause og samtaler", "location": "Kjøkkenet, kl. 19:10", "text": "Mona: «Jeg har gitt alt i tolv år. Det føles som det ikke betyr noe.»\nAmir: «Jeg prøver bare å bidra, men føler meg aldri tatt seriøst.»", "choices": [{"text": "Bruk LØFT: Spør hva en ideell løsning ville sett ut", "next": "k3a"}, {"text": "Foreslå arbeidsgruppe der de samarbeider", "next": "k3b"}]}, "k3a": {"title": "LØFT i praksis", "location": "Kulturhuset, kl. 19:25", "badge": "LØFT-metodikk", "text": "Du spør: «Se for dere at festivalen ble den beste noensinne. Hva skjedde?»\n\nMona: «Matbodene var der, men med nytt barneprogram.» Amir: «En scene med lokale artister.» Erik: «Nok folk fordi vi planla i tid.»\n\nSamtalen snur. Dere lager en skisse: tradisjonelt grunnlag med nye elementer Amir koordinerer. Mona tilbyr seg å være mentor.\n\nMona: «Beklager det jeg sa.» Amir: «Jeg skal bevise at jeg leverer.»", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: En god vei gjennom uenigheten", "points": ["Du anerkjente begge og skapte rom for dialog.", "Pausen avdekket underliggende følelser.", "LØFT flyttet fokus fra problem til løsning.", "Uenigheten ble et uenighetsfellesskap."], "questions": ["Hvordan påvirket maktdynamikken situasjonen?", "Hva hadde skjedd uten pausen?", "Hvordan forebygge eskalering i fremtiden?"]}}, "k3b": {"title": "Arbeidsgruppen havarerer", "location": "Ukene etter", "text": "Uten avklarte roller krasjer samarbeidet. Begge truer med å trekke seg.", "choices": [{"text": "Kall inn trepartsmøte på nøytral grunn", "next": "k3b1"}, {"text": "Megle via separate samtaler", "next": "k3b2"}]}, "k3b1": {"title": "Trepartsmøtet", "location": "Kafé, onsdag", "badge": "Konflikthåndtering", "text": "På nøytral grunn avdekker dere at de aldri avklarte ansvar og har ulike kommunikasjonsforventninger. Dere lager en samarbeidsavtale. Festivalen gjennomføres – ikke perfekt, men ok.", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Struktur løser konflikten", "points": ["Arbeidsgruppen uten rolleavklaring skapte friksjon.", "Nøytral grunn gjenopprettet dialog.", "Konflikten handlet om roller, ikke festivalkonseptet."], "questions": ["Hva burde vært avklart før gruppen startet?", "Hvordan kan kommunikasjonsrutiner forebygge konflikt?", "Hvilke maktrelasjoner var i spill?"]}}, "k3b2": {"title": "Mekling som bumerang", "location": "Uke 3–5", "text": "Budskapene forvrenges. Mona føler du tar Amirs side. Amir føler seg bagatellisert. Mona trekker seg. Festivalen nedskaleres.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Budbringerrollen", "points": ["Separate samtaler skapte misforståelser.", "Du ble budbringer, ikke fasilitator.", "Partene fikk aldri snakke direkte."], "questions": ["Hva er forskjellen på megling og budbringeri?", "Hvordan kunne LØFT vært brukt?", "Unngår du konfrontasjon? Hva koster det?"]}}, "k4": {"title": "Tilbake til formålet", "location": "Kulturhuset, kl. 19:00", "badge": "Kommunikasjon", "text": "Gruppa oppdager at de deler formålet – bare med ulike metoder. Mona og Amir begynner forsiktig å bygge på hverandres ideer. Planen er ikke perfekt, men alle kan leve med den.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Felles formål", "points": ["Ved å spørre «hvorfor» løftet du samtalen.", "Gruppa delte formål med ulike metoder.", "Monas kommentar ble ikke adressert – kan ulme."], "questions": ["Bør du følge opp mellom Mona og Amir?", "Hva skiller uenighetsfellesskap fra konflikt her?", "Hvordan bruke formålsdiskusjoner forebyggende?"]}}, "k5": {"title": "Du støtter Amir", "location": "Kulturhuset, kl. 18:40", "text": "Mona kniper leppene sammen og sier nesten ingenting resten av møtet. Erik forteller deg etterpå at hun var veldig lei seg.", "choices": [{"text": "Ring Mona for en privat samtale", "next": "k6"}, {"text": "Tenk at Mona overreagerer", "next": "k7"}]}, "k6": {"title": "Samtale med Mona", "location": "Telefon, tirsdag", "badge": "Aktiv lytting", "text": "Mona føler seg overkjørt. Du beklager. Sammen finner dere en mentorrolle for henne. Hun kommer tilbake.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Reparasjon", "points": ["Offentlig støtte til Amir signaliserte maktforskyvning.", "Privat samtale ga rom for reelle følelser.", "Mentorrollen anerkjenner erfaring som ressurs."], "questions": ["Hvordan støtte nye ideer uten å fremmedgjøre erfarne?", "Hva er forskjellen på nøytralitet og rettferdighet?", "Hvordan påvirker identitet Monas reaksjon?"]}}, "k7": {"title": "Du lar det ligge", "location": "Ukene etterpå", "text": "Mona forsvinner. Berit og Gunnar følger. Festivalen gjennomføres med halv styrke.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Prisen for å overse", "points": ["Monas investering ble undervurdert.", "Uformell makt forsvant med henne.", "Konflikten ble undertrykt, ikke løst."], "questions": ["Hva er farene ved å anta konflikter løser seg selv?", "Hvilken uformell makt hadde Mona?", "Hva hadde du gjort annerledes?"]}}, "k8": {"title": "Avstemning", "location": "Kulturhuset, kl. 18:40", "text": "5–3 for tradisjon. Mona fornøyd, Amir frustrert: «De nye stemmene teller ikke i praksis.»", "choices": [{"text": "Finn et kompromiss i etterkant", "next": "k9"}, {"text": "Si at flertallet bestemmer", "next": "k10"}]}, "k9": {"title": "Kompromisset", "location": "Torsdag kl. 17:00", "badge": "Uenighetsfellesskap", "text": "Amir får et nisjeprogram. Det trekker nytt publikum. Begge føler eierskap.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Fra flertallsmakt til inkludering", "points": ["Avstemningen løste formelt, ikke relasjonelt.", "Kompromisset balanserte demokrati og inkludering.", "Pilot-modellen ga trygg ramme for innovasjon."], "questions": ["Er avstemning alltid best i frivillige organisasjoner?", "Hvordan skaper flertallsbeslutninger usynlige tapere?", "Din erfaring med tradisjon vs. fornyelse?"]}}, "k10": {"title": "Flertallet bestemmer", "location": "Ukene etterpå", "text": "Amir trekker seg stille. To unge følger. Organisasjonen mister energi.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Formell vs. opplevd rettferdighet", "points": ["Demokratisk, men ignorerte maktasymmetri.", "Amir forsvant stille – typisk i frivillige org.", "Nye ideer signalisert som uvelkomne."], "questions": ["Hva skiller formell og opplevd rettferdighet?", "Hvordan ivareta mindretallet?", "Hva kan LØFT bidra med etter avstemning?"]}}, "k11": {"title": "Du velger tradisjonen", "location": "Kulturhuset, kl. 18:40", "text": "Mona nikker. Amir går tidlig og trekker seg fra komiteen.", "choices": [{"text": "Ring Amir og få ham tilbake", "next": "k12"}, {"text": "Aksepter valget og kjør videre", "next": "k13"}]}, "k12": {"title": "En ny sjanse", "location": "Kafeen, onsdag", "badge": "Selvrefleksjon", "text": "Amir forklarer at det handlet om å føle seg som en del av organisasjonen. Du gir ham ansvar for en fotoutstilling – den blir festivalens mest delte innlegg.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Kurskorrigering", "points": ["Rask beslutning fremmedgjorde ny stemme.", "Oppfølgingen viste selvkorreksjon.", "Amirs behov handlet om tilhørighet."], "questions": ["Var valget saklig eller ubehags-unngåelse?", "Hvordan balansere effektivitet med inkludering?", "Hvordan skape rom for nye ideer?"]}}, "k13": {"title": "Uten Amir", "location": "De neste ukene", "text": "Festivalen er fin, men flat. Motivasjonen daler. Vaktlistene er vanskelige å fylle.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Trygghet på bekostning av utvikling", "points": ["Forutsigbarhet over ubehag.", "Energien Amir representerte gikk tapt.", "«Det som fungerer» kan bli en felle."], "questions": ["Hva skiller uenighetsfellesskap fra enighet?", "Trygghet vs. utvikling?", "Hva hadde du gjort annerledes?"]}}};
+function App(){
+var _n=useState("start"),cn=_n[0],setCn=_n[1];
+var _h=useState(["start"]),hi=_h[0],setHi=_h[1];
+var _r=useState(false),sr=_r[0],setSr=_r[1];
+var _p=useState([]),ap=_p[0],setAp=_p[1];
+var ref=useRef(null);
+var nd=SC[cn];var ed=nd&&nd.isEnding?EC[nd.endingType]:null;
+useEffect(function(){if(ref.current)ref.current.scrollIntoView({behavior:"smooth",block:"start"});},[cn]);
+function choose(x){setCn(x);setHi(function(h){return h.concat([x]);});setSr(false);}
+function goBack(){if(hi.length<=1)return;var nh=hi.slice(0,-1);setHi(nh);setCn(nh[nh.length-1]);setSr(false);}
+function restart(){setAp(function(p){return p.concat([{ending:nd.endingType}]);});setCn("start");setHi(["start"]);setSr(false);}
+return(
+<div className="app" ref={ref}>
+<header className="hdr">
+<div className="badge">{META.badge}</div>
+<h1>{META.title}</h1>
+<p>Tema: {META.theme}</p>
+</header>
+<div className="pb">{Array.from({length:5}).map(function(_,i){return <div key={i} className="pg" style={{background:i<hi.length?"#c45d3e":"#d6d0c4"}}/>;})}</div>
+<div className="nc" key={cn}>
+<div className="nm"><span className="nl">{nd.location}</span>{nd.badge&&<span className="nb">{nd.badge}</span>}</div>
+{cn!=="start"&&<h2 className="nt">{nd.title}</h2>}
+<div className="ntx">{nd.text}</div>
+{nd.isEnding&&ed&&(<div>
+<div className="eb" style={{background:ed.bg,border:"1px solid "+ed.color+"30"}}><span className="ei">{ed.icon}</span><span className="el" style={{color:ed.color}}>{ed.label}</span></div>
+<button className="rt" onClick={function(){setSr(!sr);}}>{sr?"Skjul refleksjon":"Vis refleksjon og l\u00e6ringspoeng"}</button>
+{sr&&nd.reflection&&(<div className="rb">
+<h3 className="rh">{nd.reflection.title}</h3>
+<div className="rs">Hva skjedde?</div>
+<ul className="rp">{nd.reflection.points.map(function(p,i){return <li key={i}>{p}</li>;})}</ul>
+<div className="rs">Sp\u00f8rsm\u00e5l til refleksjon</div>
+<ol className="rq">{nd.reflection.questions.map(function(q,i){return <li key={i}>{q}</li>;})}</ol>
+</div>)}
+<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre</button><button className="br" onClick={restart}>Pr\u00f8v en annen vei</button></div>
+{ap.length>0&&(<div className="ps"><h3>Tidligere fors\u00f8k</h3>{ap.map(function(p,i){var c=EC[p.ending];return <span key={i} className="pc" style={{background:c.bg,color:c.color}}>{c.icon} #{i+1}: {c.label}</span>;})}</div>)}
+</div>)}
+{!nd.isEnding&&nd.choices&&(<div>
+<div className="cl">Hva gj\u00f8r du?</div>
+{nd.choices.map(function(ch,i){return <button key={i} className="cb" onClick={function(){choose(ch.next);}}>{ch.text}</button>;})}
+{hi.length>1&&<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre siste valg</button></div>}
+</div>)}
+</div></div>);
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>

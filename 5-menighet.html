@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sang og strid</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--paper:#fafaf7;--warm:#eae5dc;--accent:#c45d3e;--accent-hover:#a84830;--sage:#5a7a6a;--muted:#78716c;--border:#d6d0c4}
+body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;padding:36px 20px 80px;min-height:100vh}
+.hdr{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--warm)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);background:#e6ede9;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--muted)}
+.nc{animation:ni .5s ease}
+@keyframes ni{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nl{font-size:13px;color:var(--muted);font-style:italic}
+.nb{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:#f0e6ff;color:#6b3fa0}
+.nt{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.ntx{font-size:15.5px;line-height:1.75;margin-bottom:28px;white-space:pre-wrap}
+.cl{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cb{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s ease;line-height:1.4}
+.cb:hover{border-color:var(--accent);background:#fef6f4;transform:translateX(4px)}
+.eb{padding:16px 20px;border-radius:10px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ei{font-size:22px}.el{font-size:14px;font-weight:600}
+.rt{width:100%;padding:14px 20px;border:2px solid var(--sage);border-radius:10px;background:#fff;color:var(--sage);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s ease;margin-bottom:16px}
+.rt:hover{background:#e6ede9}
+.rb{background:#fff;border:1px solid var(--warm);border-radius:12px;padding:24px;margin-bottom:24px;animation:ni .4s ease}
+.rh{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:16px}
+.rs{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;margin-top:20px}
+.rp{list-style:none;margin-bottom:8px}
+.rp li{padding:6px 0 6px 20px;position:relative;font-size:14.5px;line-height:1.6;color:#44403c}
+.rp li::before{content:"\2013";position:absolute;left:0;color:var(--sage);font-weight:700}
+.rq{list-style:none;counter-reset:rq}
+.rq li{counter-increment:rq;padding:10px 0 10px 32px;position:relative;font-size:14.5px;line-height:1.6;border-bottom:1px solid #f5f0ea}
+.rq li:last-child{border-bottom:none}
+.rq li::before{content:counter(rq);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:#f0e6ff;color:#6b3fa0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.bb,.bm{padding:12px 20px;border:2px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.bb:hover,.bm:hover{border-color:var(--ink)}
+.br{flex:1;padding:12px 20px;border:2px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.br:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.ps{margin-top:32px;padding-top:24px;border-top:1px solid var(--warm)}
+.ps h3{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.pc{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:16px;font-size:13px;font-weight:600;margin-right:8px;margin-bottom:8px}
+.pb{display:flex;gap:4px;margin-bottom:32px}
+.pg{flex:1;height:3px;border-radius:2px;transition:background .4s ease}
+@media(max-width:540px){.app{padding:24px 16px 60px}.hdr h1{font-size:24px}.nt{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const EC={good:{label:"Godt utfall",color:"#5a7a6a",bg:"#e6ede9",icon:"\u2726"},moderate:{label:"Middels utfall",color:"#c4973e",bg:"#faf3e6",icon:"\u25c8"},poor:{label:"D\u00e5rlig utfall",color:"#c45d3e",bg:"#fef2f0",icon:"\u2727"}};
+const META={"badge": "HSM254N · Menighet", "title": "Sang og strid", "theme": "Ubevisste maktrelasjoner"};
+const SC={"start": {"title": "Sang og strid", "location": "Menighetshuset, søndag kl. 12:30", "text": "Du er nyvalgt menighetsradsleder i Fjordheim menighet (200 medlemmer).\n\nRagnhild (72) tar deg til side: «Den nye musikken – trommer og gitar – det er ikke gudstjeneste for meg lenger. Flere eldre vurderer å slutte.»\n\nDaniel (28), ungdomsleder, melder: «Vi har firedoblet ungdomsgruppa! Men nå sier noen vi må «dempe oss». Mister vi de unge om vi går tilbake til bare salmer.»\n\nDet handler tilsynelatende om musikkstil, men stikker dypere.", "choices": [{"text": "Inviter begge til felles samtale", "next": "m1"}, {"text": "Snakk med dem separat først", "next": "m4"}, {"text": "Opprett gudstjenestekomité med begge grupper", "next": "m7"}, {"text": "Innfør to ulike gudstjenesteformer", "next": "m6"}]}, "m1": {"title": "Fellessamtalen", "location": "Menighetshuset, tirsdag kl. 18:00", "text": "Ragnhild: «Det handler ikke om musikken. Menigheten jeg har tilhørt i 50 år forandrer seg, og ingen spør om det er greit.»\n\nDaniel, stille: «Jeg visste ikke det føltes sånn. Jeg prøvde bare å få ungdommene til å føle seg hjemme.»", "choices": [{"text": "Bruk LØFT: «Hvordan ser en gudstjeneste ut der begge føler seg hjemme?»", "next": "m2"}, {"text": "Foreslå at Daniel demper de nyeste endringene", "next": "m3"}]}, "m2": {"title": "LØFT i menigheten", "location": "Menighetshuset, kl. 18:30", "badge": "LØFT-metodikk", "text": "Ragnhild: «Rom for stillhet. Salmene bærer historien.» Daniel: «Energi. Ungdommene må kjenne dette er for dem.»\n\nDere lander på en struktur med både salmer og nyere musikk. Daniel inkluderer Ragnhilds kor.\n\nRagnhild: «Da får dere i det minste høre ordentlig sang.» Daniel ler.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Identitet og fellesskap", "points": ["Konflikten handlet om identitet, ikke musikkstil.", "LØFT hjalp begge se forbi posisjoner til behov.", "Begge fikk plass uten å eliminere den andre."], "questions": ["Endring som trussel mot identitet?", "Forskjellen på inkludering og erstatning?", "Generasjonstilhørighet og maktdynamikk?"]}}, "m3": {"title": "Daniel demper seg", "location": "De neste ukene", "text": "Ungdomsgruppa merker endringen. To ungdomsledere sier opp. Daniel: «Hva er viktigst – de som alltid har vært her, eller å bygge noe nytt?»", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Kompromiss på éns vilkår", "points": ["Demping favoriserte eldre uten dialog.", "Daniels arbeid ble ikke verdsatt.", "De unge leste signalet: ikke for oss."], "questions": ["Kompromiss vs. ettergivelse?", "Ivareta begge grupper uten underprioritering?", "Ubevisste maktrelasjoner basert på alder?"]}}, "m4": {"title": "Separate samtaler", "location": "Mandag og tirsdag", "badge": "Aktiv lytting", "text": "Ragnhild: «Denne menigheten er livet mitt. Når alt forandres, hører jeg ikke til lenger.»\n\nDaniel: «Ungdommene har endelig funnet et sted. Tar vi det fra dem, svikter vi.»\n\nBegge har dype, legitime behov.", "choices": [{"text": "Arrangér workshop for hele menigheten", "next": "m5"}, {"text": "Foreslå to separate gudstjenester", "next": "m6"}]}, "m5": {"title": "Menighetens samtale", "location": "Lørdag formiddag", "badge": "Kommunikasjon", "text": "30 medlemmer (16–82 år) diskuterer: «Hva betyr menigheten for deg?» Både unge og eldre verdsetter fellesskap høyest. Musikkstil er sekundært.\n\nDe lander på blandet modell med årlig samtale om retning. Ragnhild og Daniel sitter sammen på oppsummeringen.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Hele fellesskapet", "points": ["Individuelle samtaler ga innsikt, men løsningen måtte forankres bredt.", "Konflikten var smalere enn den føltes.", "Prosessen styrket fellesskapet."], "questions": ["Når løse mellom to parter vs. involvere alle?", "Både unge og eldre prioriterte fellesskap – hva betyr det?", "Jevnlige samtaler som forebygging?"]}}, "m6": {"title": "To gudstjenester", "location": "Neste måned", "text": "Tradisjonell og modern annenhver uke. Det fungerer først, men gradvis oppstår to separate menigheter. Etter seks måneder: «Det føles som vi har delt menigheten.»", "isEnding": true, "endingType": "moderate", "reflection": {"title": "Refleksjon: Løsning som skaper avstand", "points": ["Delingen løste akutt konflikt, men fjernet fellesskapet.", "To parallelle fellesskap er vanskelig å reversere.", "Begge savner møtet på tvers."], "questions": ["Når er oppdeling riktig vs. skadelig?", "Hva går tapt når kontaktpunkter fjernes?", "Valgfrihet vs. splittelse?"]}}, "m7": {"title": "Gudstjenestekomiteen", "location": "Første møte, onsdag", "text": "To eldre, to unge, presten og Daniel. Første møte går bra. På andre eskalerer det. Ragnhild føler press, Daniel føler bremse. Komiteen trenger rammer.", "choices": [{"text": "Innfør spilleregler og fasiliterer selv", "next": "m8"}, {"text": "La komiteen finne sin form", "next": "m9"}]}, "m8": {"title": "Strukturert arbeid", "location": "Uke 3–8", "badge": "Konflikthåndtering", "text": "Faste rammer: lik taletid, prøveperioder, felles evaluering. Prosessen er treg men grundig. Etter to måneder har komiteen en plan alle står bak.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Struktur som inkludering", "points": ["Komiteen trengte rammer for å fungere.", "Fasilitering fordelte makt jevnt.", "Prøveperioden senket motstanden."], "questions": ["Hva skiller fungerende fra dysfunksjonell komité?", "Fasilitering mot ubevisste maktrelasjoner?", "Din rolle som prosessleder?"]}}, "m9": {"title": "Komiteen løses opp", "location": "Etter 6 uker", "text": "Uten rammer faller de eldre fra. Komiteen består til slutt bare av unge og vedtar endringer de eldre aldri var med på.\n\nRagnhild: «Akkurat som jeg sa. Vi ble overkjørt.»", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Uten rammer vinner de høyeste stemmene", "points": ["Komité uten fasilitering reproduserer maktforhold.", "De med minst energi falt fra.", "Resultatet manglet legitimitet."], "questions": ["Møtestruktur og maktfordeling?", "Sikre at alle stemmer høres?", "Alder og livssituasjon i langvarige prosesser?"]}}};
+function App(){
+var _n=useState("start"),cn=_n[0],setCn=_n[1];
+var _h=useState(["start"]),hi=_h[0],setHi=_h[1];
+var _r=useState(false),sr=_r[0],setSr=_r[1];
+var _p=useState([]),ap=_p[0],setAp=_p[1];
+var ref=useRef(null);
+var nd=SC[cn];var ed=nd&&nd.isEnding?EC[nd.endingType]:null;
+useEffect(function(){if(ref.current)ref.current.scrollIntoView({behavior:"smooth",block:"start"});},[cn]);
+function choose(x){setCn(x);setHi(function(h){return h.concat([x]);});setSr(false);}
+function goBack(){if(hi.length<=1)return;var nh=hi.slice(0,-1);setHi(nh);setCn(nh[nh.length-1]);setSr(false);}
+function restart(){setAp(function(p){return p.concat([{ending:nd.endingType}]);});setCn("start");setHi(["start"]);setSr(false);}
+return(
+<div className="app" ref={ref}>
+<header className="hdr">
+<div className="badge">{META.badge}</div>
+<h1>{META.title}</h1>
+<p>Tema: {META.theme}</p>
+</header>
+<div className="pb">{Array.from({length:5}).map(function(_,i){return <div key={i} className="pg" style={{background:i<hi.length?"#c45d3e":"#d6d0c4"}}/>;})}</div>
+<div className="nc" key={cn}>
+<div className="nm"><span className="nl">{nd.location}</span>{nd.badge&&<span className="nb">{nd.badge}</span>}</div>
+{cn!=="start"&&<h2 className="nt">{nd.title}</h2>}
+<div className="ntx">{nd.text}</div>
+{nd.isEnding&&ed&&(<div>
+<div className="eb" style={{background:ed.bg,border:"1px solid "+ed.color+"30"}}><span className="ei">{ed.icon}</span><span className="el" style={{color:ed.color}}>{ed.label}</span></div>
+<button className="rt" onClick={function(){setSr(!sr);}}>{sr?"Skjul refleksjon":"Vis refleksjon og l\u00e6ringspoeng"}</button>
+{sr&&nd.reflection&&(<div className="rb">
+<h3 className="rh">{nd.reflection.title}</h3>
+<div className="rs">Hva skjedde?</div>
+<ul className="rp">{nd.reflection.points.map(function(p,i){return <li key={i}>{p}</li>;})}</ul>
+<div className="rs">Sp\u00f8rsm\u00e5l til refleksjon</div>
+<ol className="rq">{nd.reflection.questions.map(function(q,i){return <li key={i}>{q}</li>;})}</ol>
+</div>)}
+<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre</button><button className="br" onClick={restart}>Pr\u00f8v en annen vei</button></div>
+{ap.length>0&&(<div className="ps"><h3>Tidligere fors\u00f8k</h3>{ap.map(function(p,i){var c=EC[p.ending];return <span key={i} className="pc" style={{background:c.bg,color:c.color}}>{c.icon} #{i+1}: {c.label}</span>;})}</div>)}
+</div>)}
+{!nd.isEnding&&nd.choices&&(<div>
+<div className="cl">Hva gj\u00f8r du?</div>
+{nd.choices.map(function(ch,i){return <button key={i} className="cb" onClick={function(){choose(ch.next);}}>{ch.text}</button>;})}
+{hi.length>1&&<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre siste valg</button></div>}
+</div>)}
+</div></div>);
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Trenerkonflikten</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#1c1917;--paper:#fafaf7;--warm:#eae5dc;--accent:#c45d3e;--accent-hover:#a84830;--sage:#5a7a6a;--muted:#78716c;--border:#d6d0c4}
+body{font-family:'Source Sans 3',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+.app{max-width:640px;margin:0 auto;padding:36px 20px 80px;min-height:100vh}
+.hdr{text-align:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--warm)}
+.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);background:#e6ede9;padding:5px 14px;border-radius:20px;margin-bottom:12px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:8px}
+.hdr p{font-size:14px;color:var(--muted)}
+.nc{animation:ni .5s ease}
+@keyframes ni{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nm{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.nl{font-size:13px;color:var(--muted);font-style:italic}
+.nb{font-size:11px;font-weight:600;padding:4px 10px;border-radius:12px;background:#f0e6ff;color:#6b3fa0}
+.nt{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1.3}
+.ntx{font-size:15.5px;line-height:1.75;margin-bottom:28px;white-space:pre-wrap}
+.cl{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cb{display:block;width:100%;text-align:left;padding:16px 20px;margin-bottom:10px;border:2px solid var(--border);border-radius:10px;background:#fff;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:500;color:var(--ink);cursor:pointer;transition:all .15s ease;line-height:1.4}
+.cb:hover{border-color:var(--accent);background:#fef6f4;transform:translateX(4px)}
+.eb{padding:16px 20px;border-radius:10px;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.ei{font-size:22px}.el{font-size:14px;font-weight:600}
+.rt{width:100%;padding:14px 20px;border:2px solid var(--sage);border-radius:10px;background:#fff;color:var(--sage);font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s ease;margin-bottom:16px}
+.rt:hover{background:#e6ede9}
+.rb{background:#fff;border:1px solid var(--warm);border-radius:12px;padding:24px;margin-bottom:24px;animation:ni .4s ease}
+.rh{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:16px}
+.rs{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:10px;margin-top:20px}
+.rp{list-style:none;margin-bottom:8px}
+.rp li{padding:6px 0 6px 20px;position:relative;font-size:14.5px;line-height:1.6;color:#44403c}
+.rp li::before{content:"\2013";position:absolute;left:0;color:var(--sage);font-weight:700}
+.rq{list-style:none;counter-reset:rq}
+.rq li{counter-increment:rq;padding:10px 0 10px 32px;position:relative;font-size:14.5px;line-height:1.6;border-bottom:1px solid #f5f0ea}
+.rq li:last-child{border-bottom:none}
+.rq li::before{content:counter(rq);position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;background:#f0e6ff;color:#6b3fa0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ar{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.bb,.bm{padding:12px 20px;border:2px solid var(--border);border-radius:10px;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.bb:hover,.bm:hover{border-color:var(--ink)}
+.br{flex:1;padding:12px 20px;border:2px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:'Source Sans 3',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s ease}
+.br:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.ps{margin-top:32px;padding-top:24px;border-top:1px solid var(--warm)}
+.ps h3{font-family:'Playfair Display',serif;font-size:16px;margin-bottom:12px}
+.pc{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:16px;font-size:13px;font-weight:600;margin-right:8px;margin-bottom:8px}
+.pb{display:flex;gap:4px;margin-bottom:32px}
+.pg{flex:1;height:3px;border-radius:2px;transition:background .4s ease}
+@media(max-width:540px){.app{padding:24px 16px 60px}.hdr h1{font-size:24px}.nt{font-size:19px}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const EC={good:{label:"Godt utfall",color:"#5a7a6a",bg:"#e6ede9",icon:"\u2726"},moderate:{label:"Middels utfall",color:"#c4973e",bg:"#faf3e6",icon:"\u25c8"},poor:{label:"D\u00e5rlig utfall",color:"#c45d3e",bg:"#fef2f0",icon:"\u2727"}};
+const META={"badge": "HSM254N · Idrettslag", "title": "Trenerkonflikten", "theme": "Uklare roller og ansvar"};
+const SC={"start": {"title": "Trenerkonflikten", "location": "Klubbhuset, tirsdag kl. 17:00", "text": "Du er nyvalgt leder i Haugen IL. To trenere på guttenes 12-årslag er i konflikt.\n\nLars (52, eks-seriespiller, trener i 8 år) vil satse hardt for kretsmesterskapet. Silje (34, idrettspedagog, trener i 2 år) vil at alle får lik spilletid.\n\nLars: «Hvis alle spiller like mye, kan vi droppe kamper. Ungene vil vinne.»\nSilje: «Tre barn har sluttet fordi de aldri får spille. Det er ikke barneidrett.»", "choices": [{"text": "Spør begge: «Hva er viktigst for 12-åringer i fotball?»", "next": "i1"}, {"text": "Sjekk klubbens vedtekter om breddeidrett", "next": "i2"}, {"text": "Si at Lars har mest erfaring og bør bestemme", "next": "i5"}, {"text": "Si at NFF-retningslinjene for barneidrett må følges", "next": "i6"}]}, "i1": {"title": "Felles mål", "location": "Klubbhuset, kl. 17:20", "badge": "LØFT-metodikk", "text": "Lars: «At de lærer å gi alt.» Silje: «At de elsker idretten og fortsetter når de er 16.»\n\nDere lager felles treningsfilosofi: alle spiller minst halvparten av kamper, treningene differensieres.\n\nLars: «Jeg glemmer noen ganger at de bare er tolv.» Silje: «Og jeg må tåle at noen vil konkurrere.»", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Verdier i dialog", "points": ["Begge hadde legitime verdier.", "LØFT avdekket felles mål bak ulike metoder.", "Kompromisset anerkjente begge."], "questions": ["Hvordan kan verdikonflikter være produktive?", "Uenighetsfellesskap vs. verdikonflikt?", "Hvordan påvirker egen sportserfaring håndteringen?"]}}, "i2": {"title": "Vedtektene", "location": "Klubbhuset, kl. 17:15", "text": "Vedtektene: «Haugen IL skal gi godt tilbud til alle barn.» Lars: «Fint på papiret.» Spenningen øker.", "choices": [{"text": "Lag en felles tolkning av vedtektene", "next": "i3"}, {"text": "Si at vedtektene er tydelige og Silje har rett", "next": "i4"}]}, "i3": {"title": "Felles tolkning", "location": "Klubbhuset, kl. 17:30", "badge": "Kommunikasjon", "text": "Dere konkretiserer «godt tilbud til alle». Lars får utvikling for de beste, Silje får at alle spiller. Retningslinjene gir hele trenergruppa et felles grunnlag.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Struktur forebygger", "points": ["Vedtektene ble samtalegrunnlag, ikke våpen.", "Eierskap til retningslinjene reduserer fremtidige konflikter.", "Begge parters verdier ble ivaretatt."], "questions": ["Hvordan kan dokumenter både skape og løse konflikter?", "Hvilke maktrelasjoner var i spill?", "Våpen vs. samtalegrunnlag?"]}}, "i4": {"title": "Du tar Siljes side", "location": "Klubbhuset, kl. 17:20", "text": "Lars reiser seg: «Fint. Jeg tar med meg de som vil satse til naboklubben.» Fire spillere melder overgang. Foreldrene er rasende.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Rettferdighet splitter", "points": ["Vedtektene ga Silje formelt rett, men brukt som dommerslag.", "Lars’ uformelle makt var større enn antatt.", "Han følte seg utelukket fra beslutningen."], "questions": ["Hvordan beholde Lars og følge vedtektene?", "Forskjellen mellom å ha rett og handle klokt?", "Identitetens rolle i Lars’ reaksjon?"]}}, "i5": {"title": "Lars bestemmer", "location": "Klubbhuset, kl. 17:15", "text": "Silje trekker seg. To foreldre klager. Én familie melder barnet ut: «Klubben bryr seg ikke om de som ikke er best.»", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Erfaring trumfer inkludering", "points": ["Du prioriterte ansiennitet over sak.", "Silje og inkluderingsverdien ble usynliggjort.", "Organisasjonen mistet tillit hos foreldre."], "questions": ["Hvilke ubevisste maktrelasjoner påvirket deg?", "Hva om du hadde stilt et åpent spørsmål?", "Hvordan balansere erfaring med nye perspektiver?"]}}, "i6": {"title": "NFF-retningslinjene", "location": "Klubbhuset, kl. 17:15", "text": "Lars aksepterer motvillig. Men i ukene etter gjør han bare minimum. Treningene mister energi. Silje: «Han er fysisk til stede, men har sjekket ut.»", "choices": [{"text": "Ha en én-til-én-samtale med Lars", "next": "i7"}, {"text": "La det gå seg til", "next": "i8"}]}, "i7": {"title": "Samtalen med Lars", "location": "Kafé, torsdag", "badge": "Aktiv lytting", "text": "Lars: «Reglene sier hva jeg ikke kan gjøre, men ingen spør hva jeg kan bidra med.»\n\nDu spør: «Hva ville vært ditt beste bidrag innenfor rammene?» Lars: «Ferdighetstrening. Gjøre alle bedre – det er ikke det samme som å benke de svakeste.»\n\nNy rolledeling: Lars tar treningsansvar, Silje kampledelse.", "isEnding": true, "endingType": "good", "reflection": {"title": "Refleksjon: Rolleavklaring", "points": ["Regler løste saken formelt, ikke relasjonelt.", "Lars trengte å føle kompetansen hadde verdi.", "Ny rolledeling ga begge meningsfylte oppgaver."], "questions": ["Forskjellen mellom rammer og fratatt eierskap?", "Lydighet vs. engasjement?", "Hvordan bruke rollefordeling forebyggende?"]}}, "i8": {"title": "Lars går", "location": "Etter sesongen", "text": "Lars slutter stille. To spillere bytter klubb. Silje står alene med 22 spillere og ingen medtrener i seks måneder.", "isEnding": true, "endingType": "poor", "reflection": {"title": "Refleksjon: Stille avgang", "points": ["Lars forsvant uten dramatikk, men effekten var stor.", "Regler uten relasjonelt fundament skaper overstyring.", "Nøkkelressurs gikk tapt."], "questions": ["Hva skiller «følge reglene» fra engasjement?", "Hvordan fange opp frustrasjon tidligere?", "Din tendens når noen sjekker ut?"]}}};
+function App(){
+var _n=useState("start"),cn=_n[0],setCn=_n[1];
+var _h=useState(["start"]),hi=_h[0],setHi=_h[1];
+var _r=useState(false),sr=_r[0],setSr=_r[1];
+var _p=useState([]),ap=_p[0],setAp=_p[1];
+var ref=useRef(null);
+var nd=SC[cn];var ed=nd&&nd.isEnding?EC[nd.endingType]:null;
+useEffect(function(){if(ref.current)ref.current.scrollIntoView({behavior:"smooth",block:"start"});},[cn]);
+function choose(x){setCn(x);setHi(function(h){return h.concat([x]);});setSr(false);}
+function goBack(){if(hi.length<=1)return;var nh=hi.slice(0,-1);setHi(nh);setCn(nh[nh.length-1]);setSr(false);}
+function restart(){setAp(function(p){return p.concat([{ending:nd.endingType}]);});setCn("start");setHi(["start"]);setSr(false);}
+return(
+<div className="app" ref={ref}>
+<header className="hdr">
+<div className="badge">{META.badge}</div>
+<h1>{META.title}</h1>
+<p>Tema: {META.theme}</p>
+</header>
+<div className="pb">{Array.from({length:5}).map(function(_,i){return <div key={i} className="pg" style={{background:i<hi.length?"#c45d3e":"#d6d0c4"}}/>;})}</div>
+<div className="nc" key={cn}>
+<div className="nm"><span className="nl">{nd.location}</span>{nd.badge&&<span className="nb">{nd.badge}</span>}</div>
+{cn!=="start"&&<h2 className="nt">{nd.title}</h2>}
+<div className="ntx">{nd.text}</div>
+{nd.isEnding&&ed&&(<div>
+<div className="eb" style={{background:ed.bg,border:"1px solid "+ed.color+"30"}}><span className="ei">{ed.icon}</span><span className="el" style={{color:ed.color}}>{ed.label}</span></div>
+<button className="rt" onClick={function(){setSr(!sr);}}>{sr?"Skjul refleksjon":"Vis refleksjon og l\u00e6ringspoeng"}</button>
+{sr&&nd.reflection&&(<div className="rb">
+<h3 className="rh">{nd.reflection.title}</h3>
+<div className="rs">Hva skjedde?</div>
+<ul className="rp">{nd.reflection.points.map(function(p,i){return <li key={i}>{p}</li>;})}</ul>
+<div className="rs">Sp\u00f8rsm\u00e5l til refleksjon</div>
+<ol className="rq">{nd.reflection.questions.map(function(q,i){return <li key={i}>{q}</li>;})}</ol>
+</div>)}
+<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre</button><button className="br" onClick={restart}>Pr\u00f8v en annen vei</button></div>
+{ap.length>0&&(<div className="ps"><h3>Tidligere fors\u00f8k</h3>{ap.map(function(p,i){var c=EC[p.ending];return <span key={i} className="pc" style={{background:c.bg,color:c.color}}>{c.icon} #{i+1}: {c.label}</span>;})}</div>)}
+</div>)}
+{!nd.isEnding&&nd.choices&&(<div>
+<div className="cl">Hva gj\u00f8r du?</div>
+{nd.choices.map(function(ch,i){return <button key={i} className="cb" onClick={function(){choose(ch.next);}}>{ch.text}</button>;})}
+{hi.length>1&&<div className="ar"><button className="bb" onClick={goBack}>&larr; Angre siste valg</button></div>}
+</div>)}
+</div></div>);
+}
+ReactDOM.render(<App/>,document.getElementById("root"));
+</script>
+</body>
+</html>
